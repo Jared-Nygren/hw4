@@ -20,6 +20,13 @@ test:
   <<: *default
   database: db/test.sqlite3
 
-production:
+  production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  database: tacogram_final_production
+  username: tacogram_final
+  password: <%= ENV["Nygrentravelgram_FINAL_DATABASE_PASSWORD"] %>
+
+# production:
+#   <<: *default
+#   database: db/production.sqlite3
