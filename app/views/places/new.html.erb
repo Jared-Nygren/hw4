@@ -1,12 +1,20 @@
+<!-- The container class groups the form content for styling. -->
 <div class="container">
+  <!-- The heading shows what this form is for: adding a new place. -->
   <h1>New Place</h1>
 
+  <!-- The form where users can submit the new place's details. It posts data to the "/places" route. -->
   <form action="/places" method="post">
+    <!-- A form group for entering the name of the place. -->
     <div class="mb-3">
+      <!-- Label for the input field, making it clear what information is needed. -->
       <label for="name_input" class="form-label">Name</label>
+      <!-- The input field where users type the place's name. It's part of the 'place' object for organized data handling. -->
       <input type="text" name="place[name]" class="form-control" id="name_input">
     </div>
 
+    <!-- A button to submit the form, saving the new place. -->
     <button type="submit" class="btn btn-primary">Save</button>
   </form>
 </div>
+

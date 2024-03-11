@@ -1,27 +1,43 @@
+<!-- Container for styling and alignment of the form -->
 <div class="container">
+  <!-- Form heading indicating its purpose -->
   <h1>New User Account</h1>
 
   <form action="/users" method="post">
+    <!-- Each of these div blocks is a form group meant for collecting a specific piece of user information. The 'mb-3' class adds some margin for spacing. -->
+
+    <!-- Form field for username -->
     <div class="mb-3">
       <label for="username" class="form-label">Username</label>
       <input type="text" name="username" id="username" class="form-control">
     </div>
+
+    <!-- Form field for first name -->
     <div class="mb-3">
       <label for="first_name" class="form-label">First Name</label>
       <input type="text" name="first_name" id="first_name" class="form-control">
     </div>
+
+    <!-- Form field for last name -->
     <div class="mb-3">
       <label for="last_name" class="form-label">Last Name</label>
       <input type="text" name="last_name" id="last_name" class="form-control">
     </div>
+
+    <!-- Form field for email -->
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
       <input type="text" name="email" id="email" class="form-control">
     </div>
+
+    <!-- Form field for password -->
     <div class="mb-3">
       <label for="password" class="form-label">Password</label>
       <input type="password" name="password" id="password" class="form-control">
     </div>
+
+    <!-- Submission button for the form -->
     <button type="submit" class="btn btn-primary">Signup</button>
   </form>
 </div>
+

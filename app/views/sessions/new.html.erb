@@ -1,15 +1,27 @@
+<!-- This 'container' class is used for styling, keeping the form content centered and well-spaced. -->
 <div class="container">
+  <!-- A heading indicating this is the login page. -->
   <h1>Login</h1>
 
+  <!-- The form is created with the 'form_with' helper, targeting the sessions_path as its action URL. -->
   <%= form_with url: sessions_path do |form| %>
+    <!-- A form group for the email input field. -->
     <div class="mb-3">
+      <!-- Label for the email field, using form.label helper for automatic association with the input field. -->
       <%= form.label :email, class: "form-label" %>
+      <!-- Text input field for the email, uses Bootstrap's 'form-control' class for styling. -->
       <%= form.text_field :email, class: "form-control" %>
     </div>
+
+    <!-- A form group for the password input field. -->
     <div class="mb-3">
+      <!-- Label for the password field. -->
       <%= form.label :password, class: "form-label" %>
+      <!-- Password input field, hides the input text for privacy. -->
       <%= form.password_field :password, class: "form-control" %>
     </div>
+
+    <!-- A submit button for the form, styled with Bootstrap's 'btn btn-primary' class. -->
     <div class="mb-3">
       <%= form.submit "Login", class: "btn btn-primary" %>
     </div>

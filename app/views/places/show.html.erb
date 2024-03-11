@@ -1,19 +1,30 @@
+<!-- This container groups the page content for styling. -->
 <div class="container">
+  <!-- Displays the name of the place as a main heading. -->
   <h1><%= @place.name %></h1>
 
+  <!-- A subheading for the section showing the entries related to the place. -->
   <h2>My Entries</h2>
+  <!-- A grid layout to display the entries, adjusting for different screen sizes. -->
   <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Loop through each entry related to the place. -->
     <% @entries.each do |entry| %>
       <div class="col">
+        <!-- A card for each entry, making the layout neat and organized. -->
         <div class="card h-100">
           <div class="card-body">
+            <!-- The title of the entry displayed as a heading. -->
             <h3 class="card-title"><%= entry.title %></h3>
+            <!-- The time of the entry, displayed in a smaller, muted style. -->
             <h4 class="card-subtitle mb-2 text-muted">Entry Time: <%= entry.occurred_on %></h4>
+            <!-- The description of the entry. -->
             <p class="card-text"><%= entry.description %></p>
+            <!-- Conditionally display the entry's image if it exists. -->
             <% if entry.uploaded_image.attached? %>
+              <!-- Shows the uploaded image if available. -->
               <%= image_tag entry.uploaded_image, class: "img-fluid" %>
             <% else %>
-              <!-- Display a default image if no image is attached -->
+              <!-- If no image is attached, a placeholder image could be shown here. -->
               <img src="<%= 'default_image_path_here' %>" class="img-fluid">
             <% end %>
           </div>
@@ -22,15 +33,16 @@
     <% end %>
   </div>
 
-  <!-- Updated Button to add a new entry with place_id -->
+  <!-- Button to add a new entry, passing the current place's ID as a parameter. -->
   <div class="mt-3">
     <%= link_to 'Add New Entry', new_entry_path(place_id: @place.id), class: "btn btn-primary" %>
   </div>
 
-  <!-- Button to go back to all places -->
+  <!-- A button for navigating back to the list of all places. -->
   <div class="mt-3">
     <%= link_to 'Back to All Places', places_path, class: "btn btn-secondary" %>
   </div>
 </div>
+
 
 

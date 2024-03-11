@@ -1,36 +1,47 @@
+<!-- This is a container for the whole form, keeping everything grouped together visually. -->
 <div class="container">
+  <!-- The title of the form, displayed as a large heading. -->
   <h1>New Entry</h1>
 
+  <!-- The form itself, set to post the data to the server at the "/entries" URL, including files. -->
   <form action="/entries" method="post" enctype="multipart/form-data">
+    <!-- This helps protect against CSRF (Cross-Site Request Forgery) attacks. -->
     <%= csrf_meta_tags %>
+    <!-- A hidden field to include the authenticity token for CSRF protection. -->
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
 
-    <!-- Adjusted hidden input field for place_id to nest under 'entry' -->
+    <!-- A hidden field to send the place_id along with the form, stored under 'entry' to organize data. -->
     <input type="hidden" name="entry[place_id]" value="<%= @place_id %>">
 
+    <!-- A section for the title input, including a label and a text input box. -->
     <div class="mb-3">
       <label for="title" class="form-label">Title:</label>
-      <!-- Adjusted name attribute to nest under 'entry' -->
+      <!-- Text input for the title, required to fill out. -->
       <input type="text" name="entry[title]" id="title" class="form-control" required>
     </div>
     
+    <!-- A section for the description input, including a label and a larger text area for longer text. -->
     <div class="mb-3">
       <label for="description" class="form-label">Description:</label>
-      <!-- Adjusted name attribute to nest under 'entry' -->
+      <!-- Text area for the description, required to fill out. -->
       <textarea name="entry[description]" id="description" class="form-control" rows="4" required></textarea>
     </div>
     
+    <!-- A section for the occurred_on date input, including a label and a date picker. -->
     <div class="mb-3">
       <label for="occurred_on" class="form-label">Occurred On:</label>
-      <!-- Adjusted name attribute to nest under 'entry' -->
+      <!-- Date input for when the entry occurred, required to fill out. -->
       <input type="date" name="entry[occurred_on]" id="occurred_on" class="form-control" required>
     </div>
 
+    <!-- A section for uploading an image, with a label and file input control. -->
     <div class="mb-3">
       <%= label_tag "uploaded_image", "Uploaded Image:", class: "form-label" %>
+      <!-- File input for the image, accepts specific image formats. -->
       <%= file_field_tag "entry[uploaded_image]", class: "form-control", :accept => "image/png,image/jpg,image/jpeg,image/gif" %>
     </div>
 
+    <!-- A submit button to send the form data to the server. -->
     <button type="submit" class="btn btn-primary">Save</button>
   </form>
 </div>

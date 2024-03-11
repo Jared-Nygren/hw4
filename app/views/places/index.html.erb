@@ -1,22 +1,31 @@
+<!-- Container for the content, using Bootstrap for styling. -->
 <div class="container">
+  <!-- Checks if there are any success or notice messages to display. -->
   <% if flash[:notice] || flash[:success] %>
+    <!-- If there is a message, displays it in a green alert box. -->
     <div class="alert alert-success" role="alert">
       <%= flash[:notice] || flash[:success] %>
     </div>
   <% end %>
 
+  <!-- The page title. -->
   <h1>Places</h1>
 
+  <!-- A list group for displaying the places. Each place is a list item. -->
   <ul class="list-group">
+    <!-- Loops through each place in the @places variable passed from the controller. -->
     <% for place in @places %>
+      <!-- Each place is a clickable link within a list item, leading to its details page. -->
       <li class="list-group-item"><a href="/places/<%= place["id"] %>"><%= place["name"] %></a></li>
     <% end %>
   </ul>
 
+  <!-- A button at the bottom for adding a new place. -->
   <div class="mt-3">
     <a class="btn btn-primary" href="/places/new">New Place</a>
   </div>
 </div>
+
 
 
 

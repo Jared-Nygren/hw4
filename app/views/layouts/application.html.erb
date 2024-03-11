@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- The title of the webpage, shown in the browser's title bar or tab. -->
     <title>Nygrentravelgram Final</title>
+    <!-- Meta tag to ensure proper rendering and touch zooming on mobile devices. -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- Link to the application's CSS file for styling. -->
     <%= stylesheet_link_tag "application" %>
-    <!-- Add Bootstrap CSS link -->
+    <!-- Link to Bootstrap's CSS for styling with Bootstrap framework. -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
 
   <body>
+    <!-- Navigation bar at the top of the page, styled with Bootstrap classes. -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <!-- Brand -->
+        <!-- Brand logo or name linking to the home page. -->
         <a class="navbar-brand" href="/">Home</a>
 
-        <!-- Toggler/collapsible Button -->
+        <!-- Button for toggling the navbar on small screens. -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Navbar links -->
+        <!-- Container for navbar links, collapsing on small screens. -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <!-- Check if user is logged in -->
+            <!-- Server-side code to check if a user is logged in by looking up the session. -->
             <% @user = User.find_by({ "id" => session["user_id"] }) %>
+            <!-- If no user is found (not logged in), display signup and login links. -->
             <% if @user == nil %>
-            <!-- If not logged in, show signup and login links -->
             <li class="nav-item">
               <a class="nav-link" href="/users/new">Sign Up</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/login">Login</a>
             </li>
+            <!-- If a user is found (logged in), display user's first name and a logout link. -->
             <% else %>
-            <!-- If logged in, show user name and logout link -->
             <li class="nav-item">
               <span class="nav-link me-3">Hey, <%= @user["first_name"] %></span>
             </li>
@@ -50,14 +54,15 @@
       </div>
     </nav>
 
+    <!-- Main content container, where the page-specific content will be injected. -->
     <div class="container">
-      <!-- Content -->
       <%= yield %>
     </div>
 
-    <!-- Bootstrap JS (optional, for components like dropdowns) -->
+    <!-- Link to Bootstrap's JavaScript bundle for enabling interactive components. -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
+
 
 
