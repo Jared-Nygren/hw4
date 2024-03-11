@@ -1,16 +1,36 @@
-<h1><%= @place["name"] %></h1>
+<div class="container">
+  <h1><%= @place.name %></h1>
 
-<h2>My Entries</h2>
-<% for entry in @entries %>
-  <h3><%= entry["title"] %></h3>
-  <h4><%= entry["occurred_on"] %></h4>
-  <p><%= entry["description"] %></p>
-<% end %>
+  <h2>My Entries</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% @entries.each do |entry| %>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h3 class="card-title"><%= entry.title %></h3>
+            <h4 class="card-subtitle mb-2 text-muted">Entry Time: <%= entry.occurred_on %></h4>
+            <p class="card-text"><%= entry.description %></p>
+            <% if entry.uploaded_image.attached? %>
+              <%= image_tag entry.uploaded_image, class: "img-fluid" %>
+            <% else %>
+              <!-- Display a default image if no image is attached -->
+              <img src="<%= 'default_image_path_here' %>" class="img-fluid">
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-<p>
-  <a href="/entries/new?place_id=<%= @place["id"] %>">New Entry</a>
-</p>
+  <!-- Updated Button to add a new entry with place_id -->
+  <div class="mt-3">
+    <%= link_to 'Add New Entry', new_entry_path(place_id: @place.id), class: "btn btn-primary" %>
+  </div>
 
-<p>
-  <a href="/places">Back to All Places</a>
-</p>
+  <!-- Button to go back to all places -->
+  <div class="mt-3">
+    <%= link_to 'Back to All Places', places_path, class: "btn btn-secondary" %>
+  </div>
+</div>
+
+
